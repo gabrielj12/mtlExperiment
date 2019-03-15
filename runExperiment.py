@@ -2,7 +2,7 @@ import configparser
 from sklearn.model_selection import cross_val_predict
 from utils.getLearner import getClassifier, getRegressor
 from utils.readData import getData
-from utils.getMetrics import getMetrics
+from utils.getMetrics import getClassifMetrics
 
 classification = True
 
@@ -37,4 +37,4 @@ model = getClassifier(algorithm) if classification else getRegressor(algorithm)
 
 y_pred = cross_val_predict(model, X.drop(['id'], axis=1), y.values.ravel(), cv=folds)
 
-print (getMetrics(y,y_pred))
+print (getClassifMetrics(y,y_pred,metrics_list=["accuracy","cohen"]))
