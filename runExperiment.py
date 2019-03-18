@@ -33,8 +33,15 @@ if(len(y.columns)>1):
 if(algorithm.startswith("regr.")): classification = False
 model = getClassifier(algorithm) if classification else getRegressor(algorithm)
 
+model.fit(X.drop(['id'],axis=1),y.values.ravel())
+
+
+print (model)
+
+print (model.feature_importances_)
+
 #print(y.shape)
 
-y_pred = cross_val_predict(model, X.drop(['id'], axis=1), y.values.ravel(), cv=folds)
+#y_pred = cross_val_predict(model, X.drop(['id'], axis=1), y.values.ravel(), cv=folds)
 
-print (getClassifMetrics(y,y_pred,metrics_list=["accuracy","cohen"]))
+#print (getClassifMetrics(y,y_pred,metrics_list=["accuracy","cohen"]))
