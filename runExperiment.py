@@ -3,15 +3,17 @@ from sklearn.model_selection import cross_val_predict
 from utils.getLearner import getClassifier, getRegressor
 from utils.readData import getData
 from utils.getMetrics import getClassifMetrics
+from utils.validation import cross_validation_classification
 
 classification = True
 
 configParser = configparser.RawConfigParser()
 configParser.read("expConfig.config")
 
+name = configParser.get('EXPERIMENT',"name")
 algorithm = configParser.get('EXPERIMENT','algorithm')
 data_file = configParser.get('EXPERIMENT','data')
-resample_techs = configParser.get('EXPERIMENT','resample_tech')
+resample_tech = configParser.get('EXPERIMENT','resample_tech')
 
 
 
@@ -19,10 +21,10 @@ data_file = "./data/"+data_file+".csv"
 
 X,y = getData(data_file)
 
-if resample_techs == "LOO":
+if resample_tech == "LOO":
     folds = X.shape[0]
 else:
-    folds = int(resample_techs[:-3])
+    folds = int(resample_tech[:-3])
 
 
 if(len(y.columns)>1):
@@ -33,12 +35,16 @@ if(len(y.columns)>1):
 if(algorithm.startswith("regr.")): classification = False
 model = getClassifier(algorithm) if classification else getRegressor(algorithm)
 
-model.fit(X.drop(['id'],axis=1),y.values.ravel())
-
+task = name+"."+algorithm+"."+resample_tech
 
 print (model)
 
-print (model.feature_importances_)
+cross_validation_classification(model,X,y,task_id=task,save_models=True)
+
+
+#print (model)
+
+#print (model.feature_importances_)
 
 #print(y.shape)
 
