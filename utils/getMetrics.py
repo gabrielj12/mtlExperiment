@@ -1,9 +1,23 @@
 from sklearn import metrics
 import numpy as np
+import math
 
 
 
+def getRegrMetrics(y_real,y_pred, metrics_list=['mse']):
+    scores = {}
+    scores["mse"] = metrics.mean_squared_error(y_real,y_pred)
+    scores["rmse"] = math.sqrt(scores["mse"])
+    scores["mae"] = metrics.mean_absolute_error(y_real,y_pred)
+    scores["r2"] = metrics.r2_score(y_real,y_pred)
 
+    avaiable_metrics = scores.keys()
+    if not set(metrics_list).issubset(avaiable_metrics):
+        print ("Some metrics were not calculed due to the type of the task or are not avaible in this framework\n Avaiable Metrics {}".format(avaiable_metrics))
+
+    for x in list(avaiable_metrics):
+        if x not in metrics_list: scores.pop(x, None)
+    return (scores)
 
 def  getClassifMetrics(y_real, y_pred, metrics_list = ['accuracy']):
     scores = {}

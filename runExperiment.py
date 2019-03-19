@@ -4,6 +4,7 @@ from utils.getLearner import getClassifier, getRegressor
 from utils.readData import getData
 from utils.getMetrics import getClassifMetrics
 from utils.resampleClassif import resampleClassif
+from utils.resampleRegr import resampleRegr
 
 classification = True
 
@@ -30,7 +31,7 @@ model = getClassifier(algorithm) if classification else getRegressor(algorithm)
 
 task = name+"."+algorithm+"."+resample_tech
 
-resampleTask = resampleClassif(task,model,resample_tech,X,y,save_models=True)
+resampleTask = resampleRegr(task,model,resample_tech,X,y,save_models=True)
 
 resampleTask.evaluate()
 
