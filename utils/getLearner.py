@@ -14,7 +14,7 @@ from xgboost import XGBRegressor
 
 def getClassifier(classif):
     if classif == "classif.randomForest":
-        return (RandomForestClassifier(n_estimators=500,n_jobs=-1))
+        return (RandomForestClassifier(n_estimators=10,n_jobs=-1))
     elif classif == "classif.svm":
         return (SVC())
     elif classif == "classif.knn":
@@ -31,7 +31,7 @@ def getClassifier(classif):
 
 def getRegressor(regr):
     if regr == "regr.randomForest":
-        return (RandomForestRegressor(n_estimators=500,n_jobs=-1))
+        return (RandomForestRegressor(n_estimators=10,n_jobs=-1))
     elif regr == "regr.svm":
         return (SVR())
     elif regr == "regr.knn":

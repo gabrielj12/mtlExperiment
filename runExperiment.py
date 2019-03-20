@@ -31,8 +31,7 @@ model = getClassifier(algorithm) if classification else getRegressor(algorithm)
 
 task = name+"."+algorithm+"."+resample_tech
 
-resampleTask = resampleRegr(task,model,resample_tech,X,y,save_models=True)
+validationTask = resampleClassif(task,model,resample_tech,X,y,save_models=True) if classification \
+    else resampleRegr(task,model,resample_tech,X,y,save_models=True)
 
-resampleTask.evaluate()
-
-print (resampleTask.getMetrics())
+validationTask.evaluate()
