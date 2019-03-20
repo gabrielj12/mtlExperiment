@@ -2,8 +2,8 @@
 
 Automated Machine Learning Experiments.
 
-##TO DO
+## TO DO
 
-*Balancing
-*Feature Selection
-*Fix Warnings SVM
+* Balancing
+* Feature Selection
+* Fix Warnings SVM
