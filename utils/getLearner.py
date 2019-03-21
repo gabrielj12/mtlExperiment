@@ -16,7 +16,7 @@ def getClassifier(classif):
     if classif == "classif.randomForest":
         return (RandomForestClassifier(n_estimators=10,n_jobs=-1))
     elif classif == "classif.svm":
-        return (SVC())
+        return (SVC(gamma='auto'))
     elif classif == "classif.knn":
         return (KNeighborsClassifier())
     elif classif == "classif.decisionTree":
@@ -33,7 +33,7 @@ def getRegressor(regr):
     if regr == "regr.randomForest":
         return (RandomForestRegressor(n_estimators=10,n_jobs=-1))
     elif regr == "regr.svm":
-        return (SVR())
+        return (SVR(gamma='auto'))
     elif regr == "regr.knn":
         return (KNeighborsRegressor())
     elif regr == "regr.decisionTree":
