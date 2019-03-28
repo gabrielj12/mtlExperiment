@@ -16,6 +16,5 @@ Classifcation and regression tasks                         [id | features | clas
 * Feature Selection
 * Tuning
 * Hyperparameter Selection
-* Fix Warnings SVM
 * Standardize outputfiles
 * Multilabel classification

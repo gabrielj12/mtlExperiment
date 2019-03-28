@@ -19,31 +19,31 @@ def  getClassifMetrics(y_real, y_pred):
     scores = {}
     binary_task = True if len(set(y_real)) == 2 else False
 
-    scores["accuracy"] = metrics.accuracy_score(y_real,y_pred)
+    scores["acc"] = metrics.accuracy_score(y_real,y_pred)
     try:
         scores["kappa"] = metrics.cohen_kappa_score(y_real,y_pred)
-        scores["hamming_loss"] = metrics.hamming_loss(y_real,y_pred)
+        scores["hm_loss"] = metrics.hamming_loss(y_real,y_pred)
 
         if binary_task:
-            scores["precision"] = metrics.precision_score(y_real,y_pred,average="binary")
-            scores["f1_score"] = metrics.f1_score(y_real,y_pred,average="binary")
-            scores["recall"] = metrics.recall_score(y_real,y_pred,average="binary")
+            scores["prec"] = metrics.precision_score(y_real,y_pred,average="binary")
+            scores["f1"] = metrics.f1_score(y_real,y_pred,average="binary")
+            scores["rcll"] = metrics.recall_score(y_real,y_pred,average="binary")
         else:
-            scores["avg_precision"] = np.mean(metrics.precision_score(y_real,y_pred,average=None))
-            scores["avg_f1_score"] = np.mean(metrics.f1_score(y_real,y_pred,average=None))
-            scores["avg_recall"] = np.mean(metrics.recall_score(y_real,y_pred,average=None))
+            scores["avg_prec"] = np.mean(metrics.precision_score(y_real,y_pred,average=None))
+            scores["avg_f1"] = np.mean(metrics.f1_score(y_real,y_pred,average=None))
+            scores["avg_rcll"] = np.mean(metrics.recall_score(y_real,y_pred,average=None))
 
-            scores["weighted_precision"] = metrics.precision_score(y_real,y_pred,average="weighted")
-            scores["weighted_f1_score"] = metrics.f1_score(y_real,y_pred,average="weighted")
-            scores["weighted_recall"] = metrics.recall_score(y_real,y_pred,average="weighted")
+            scores["wgh_prec"] = metrics.precision_score(y_real,y_pred,average="weighted")
+            scores["wgh_f1"] = metrics.f1_score(y_real,y_pred,average="weighted")
+            scores["wgh_rcll"] = metrics.recall_score(y_real,y_pred,average="weighted")
 
-            scores["macro_precision"] = metrics.precision_score(y_real,y_pred,average="macro")
-            scores["macro_f1_score"] = metrics.f1_score(y_real,y_pred,average="macro")
-            scores["macro_recall"] = metrics.recall_score(y_real,y_pred,average="macro")
+            scores["mac_prec"] = metrics.precision_score(y_real,y_pred,average="macro")
+            scores["mac_f1"] = metrics.f1_score(y_real,y_pred,average="macro")
+            scores["mac_rcll"] = metrics.recall_score(y_real,y_pred,average="macro")
 
-            scores["micro_precision"] = metrics.precision_score(y_real,y_pred,average="micro")
-            scores["micro_f1_score"] = metrics.f1_score(y_real,y_pred,average="micro")
-            scores["micro_recall"] = metrics.recall_score(y_real,y_pred,average="micro")
+            scores["mic_prec"] = metrics.precision_score(y_real,y_pred,average="micro")
+            scores["mic_f1"] = metrics.f1_score(y_real,y_pred,average="micro")
+            scores["mic_rcll"] = metrics.recall_score(y_real,y_pred,average="micro")
     except:
         pass
 
